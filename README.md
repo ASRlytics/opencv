@@ -35,20 +35,25 @@ The main problems are the dependencies, here I have found a list of possible dep
 * parallel computation: `sudo apt-get install libtbb-dev ocl-icd-opencl-dev opencl-headers`
 
 #### python wrappers:
-* `sudo apt-get install python-dev python-numpy python3-dev python3-numpy`
+* Install these --
+```shell
+	sudo apt-get install python-dev python-numpy python3-dev python3-numpy
+```
 
 #### Extra repairs:
 
 * `/usr/include/linux/videodev.h` is not found in Ubuntu 14.04, so you need to do 
-    
-    `cd /usr/include/linux`
-
-    `sudo ln -s ../libv4l1-videodev.h videodev.h`
+```shell
+	cd /usr/include/linux
+	sudo ln -s ../libv4l1-videodev.h videodev.h
+```
 
 * /include/ffmpeg headers are also missing (this came from NetBSD stuffs), a possible hack might be:
-
 ```shell
-	cp /usr/include/libavcodec/*  /usr/include/ffmpeg/
-	cp /usr/include/libavformat/*  /usr/include/ffmpeg/
-	cp /usr/include/libswscale/*  /usr/include/ffmpeg/
+	cd /usr/include
+	mkdir ffmpeg
+	cd ffmpeg
+	sudo ln -sf ../libavcodec/* .
+	sudo ln -sf ../libavformat/* .
+	sudo ln -sf ../libswscale/* .
 ```
