@@ -23,7 +23,14 @@ Summary of guidelines:
 
 #### Some extra notes for installation on Ubuntu 14.04
 
-The main problems are the dependencies, here I have found a list of possible dependencies:
+I wanted to make this installation separate from the system (i.e. `/usr/local/..`), because I might need this to be installed on a remote cluster where I do have write access to `/usr/`. Therefore, I wanted to keep everything inside the opencv folder itself, all the stuffs will be kept like this --
+
+```shell
+	/opnecv/extracted/path/build	(for the opencv build directory)
+	/opt/opencv/			(everything will be installed here)
+```
+
+The main problems are the dependencies, here I have found a list of possible way to solve them:
 
 * first get rid of the craps: `sudo apt-get autoremove libopencv-dev python-opncv`
 * build tools: `sudo apt-get install cmake build-essential` 
@@ -53,12 +60,34 @@ The main problems are the dependencies, here I have found a list of possible dep
 	cd /usr/include
 	mkdir ffmpeg
 	cd ffmpeg
-	sudo ln -sf ../libavcodec/* .
-	sudo ln -sf ../libavformat/* .
-	sudo ln -sf ../libswscale/* .
+	sudo ln -sf ../libavcodec/*.h .
+	sudo ln -sf ../libavformat/*.h .
+	sudo ln -sf ../libswscale/*.h .
 ```
 
-#### cmake:
+#### cmake (with python bindings):
 ```shell
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/media/khaled/data/research/opencv/bin -DBUILD_DOCS=ON -DBUILD_EXAMPLES=ON -DWITH_QT=ON -DWITH_OPENGL=ON -DWITH_TBB=ON -DWITH_XINE=ON -DPYTHON3_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.4 -DPYTHON_INCLUDE_DIR2=/usr/include/x86_64-linux-gnu/python2.7 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so -DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include/ ..
+cd /opt/
+sudo mkdir opencv
+cd /opencv/extracted/path
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/opencv/ \
+	-DBUILD_DOCS=ON -DBUILD_EXAMPLES=ON -DWITH_QT=ON -DWITH_OPENGL=ON -DWITH_TBB=ON -DWITH_XINE=ON \
+	-DPYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+				print(get_python_inc())") \
+	-DPYTHON_INCLUDE_DIRS=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+				print(get_python_inc())") \
+	-DPYTHON_EXECUTABLE=$(which python3) \
+	-DPYTHON_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; \
+				print(get_python_lib())") \
+	-DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include/ ..
 ```
+If you want to cmake multiple times, you need to clear the `CMakeCache.txt` everytime.
+
+#### make:
+Make is very lengthy, so to do it in parallel, do this:
+```shell
+	make -j7
+```
+this will run 7 parallel jobs.
