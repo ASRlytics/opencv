@@ -37,7 +37,10 @@ The main problems are the dependencies, here I have found a list of possible dep
 
 #### Extra repairs:
 
-* `/usr/include/linux/videodev.h` is not found in Ubuntu 14.04, so you need to do `sudo ln -s ../libv4l1-videodev.h videodev.h`
+* `/usr/include/linux/videodev.h` is not found in Ubuntu 14.04, so you need to do 
+    
+    `cd /usr/include/linux`
+    `sudo ln -s ../libv4l1-videodev.h videodev.h`
 
 * /include/ffmpeg headers are also missing (this came from NetBSD stuffs), a possible hack might be:
     `cp /usr/include/libavcodec/*  /usr/include/ffmpeg/`
