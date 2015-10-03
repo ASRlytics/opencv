@@ -98,3 +98,15 @@ this will run 7 parallel jobs. To install --
 ```
 now opencv will be installed in `/opt/opencv`
 
+#### Code compilation:
+* now you need to tell the system where to find the opencv libraries
+```shell
+	/sudo bash -c 'echo "/opt/opencv/lib" > /etc/ld.so.conf.d/opencv.conf'
+```
+* add `PKG_CONFIG_PATH` env. variable to /opt/opencv/lib/pkgconfig
+* now you can get the list of compile flags to use them in your Makefile --
+```shell
+	user@pc:~$ pkg-config --cflags --libs opencv
+	-I/opt/opencv/include/opencv -I/opt/opencv/include  -L/opt/opencv/lib -lopencv_shape -lopencv_stitching -lopencv_objdetect -lopencv_superres -lopencv_videostab -lopencv_calib3d -lopencv_features2d -lopencv_highgui -lopencv_videoio -lopencv_imgcodecs -lopencv_video -lopencv_photo -lopencv_ml -lopencv_imgproc -lopencv_flann -lopencv_core -lopencv_hal 	
+```
+
