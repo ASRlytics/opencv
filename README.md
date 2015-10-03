@@ -86,8 +86,13 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/opencv/ \
 If you want to cmake multiple times, you need to clear the `CMakeCache.txt` everytime.
 
 #### make:
-Make is very lengthy, so to do it in parallel, do this:
+Make is very lengthy, so to do it in parallel --
 ```shell
 	make -j7
 ```
-this will run 7 parallel jobs.
+this will run 7 parallel jobs. To install --
+```shell
+	sudo make install
+```
+now opencv will be installed in `/opt/opencv`
+
