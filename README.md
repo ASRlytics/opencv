@@ -49,7 +49,7 @@ The main problems are the dependencies, here I have found a list of possible way
 	sudo apt-get install python-dev python-numpy python3-dev python3-numpy
 ```
 
-#### Extra repairs:
+#### extra repairs:
 
 * `/usr/include/linux/videodev.h` is not found in Ubuntu 14.04, so you need to do 
 ```shell
@@ -98,7 +98,7 @@ this will run 7 parallel jobs. To install --
 ```
 now opencv will be installed in `/opt/opencv`
 
-#### Code compilation:
+#### g++/gcc flags:
 * now you need to tell the system where to find the opencv libraries
 ```shell
 	sudo bash -c 'echo "/opt/opencv/lib" > /etc/ld.so.conf.d/opencv.conf'
