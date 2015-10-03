@@ -76,14 +76,21 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/opencv/ \
 	-DBUILD_DOCS=ON -DBUILD_EXAMPLES=ON -DWITH_QT=ON -DWITH_OPENGL=ON -DWITH_TBB=ON -DWITH_XINE=ON \
-	-DPYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+	-DPYTHON2_INCLUDE_DIR=$(python -c "from distutils.sysconfig import get_python_inc; \
 				print(get_python_inc())") \
-	-DPYTHON_INCLUDE_DIRS=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+	-DPYTHON2_INCLUDE_DIRS=$(python -c "from distutils.sysconfig import get_python_inc; \
 				print(get_python_inc())") \
-	-DPYTHON_EXECUTABLE=$(which python3) \
-	-DPYTHON_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; \
+	-DPYTHON2_EXECUTABLE=$(which python) \
+	-DPYTHON2_PACKAGES_PATH=$(python -c "from distutils.sysconfig import get_python_lib; \
 				print(get_python_lib())") \
-	-DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include/ ..
+	-DPYTHON3_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+				print(get_python_inc())") \
+	-DPYTHON3_INCLUDE_DIRS=$(python3 -c "from distutils.sysconfig import get_python_inc; \
+				print(get_python_inc())") \
+	-DPYTHON3_EXECUTABLE=$(which python3) \
+	-DPYTHON3_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; \
+				print(get_python_lib())") \
+	-DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include/ .. >& log.out
 ```
 If you want to cmake multiple times, you need to clear the `CMakeCache.txt` everytime.
 
