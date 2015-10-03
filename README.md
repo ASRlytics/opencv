@@ -21,7 +21,7 @@ Summary of guidelines:
 
 ### Notes from chudur-budur:
 
-#### Some extra notes for installation on Ubuntu 14.04
+#### Some extra notes for installation on Ubuntu 14.04:
 
 I wanted to make this installation separate from the system (i.e. `/usr/local/..`), because I might need this to be installed on a remote cluster where I do have write access to `/usr/`. Therefore, I wanted to keep everything inside the opencv folder itself, all the stuffs will be kept like this --
 
