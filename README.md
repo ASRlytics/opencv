@@ -101,7 +101,7 @@ now opencv will be installed in `/opt/opencv`
 ```shell
 	sudo bash -c 'echo "/opt/opencv/lib" > /etc/ld.so.conf.d/opencv.conf'
 ```
-* add `PKG_CONFIG_PATH` env. variable to /opt/opencv/lib/pkgconfig
+* set the `PKG_CONFIG_PATH` env. variable to `/opt/opencv/lib/pkgconfig`
 * now you can get the list of compile flags to use them in your Makefile --
 ```shell
 	user@pc:~$ pkg-config --cflags --libs opencv
