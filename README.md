@@ -118,21 +118,46 @@ now opencv will be installed in `/opt/opencv`
 ```
 
 #### python (2.7.6 and 3.4.3) support:
-The python supports are already enabled in the above `cmake` command, after `make` see the output if you can find this comment at the end:
+* The python supports are already enabled in the above `cmake` command, so durin the `cmake` you supposed to see these outputs:
+```shell
+...
+-- Found PythonInterp: /usr/bin/python (found suitable version "2.7.6", minimum required is "2.7") 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython2.7.so (found suitable exact version "2.7.6") 
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.4.3", minimum required is "3.4") 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.4m.so (found suitable exact version "3.4.3") 
+...
+```
+and also at the end:
+```shell
+-- 
+--   Python 2:
+--     Interpreter:                 /usr/bin/python (ver 2.7.6)
+--     Libraries:                   /usr/lib/x86_64-linux-gnu/libpython2.7.so (ver 2.7.6)
+--     numpy:                       /usr/lib/python2.7/dist-packages/numpy/core/include (ver 1.8.2)
+--     packages path:               /usr/lib/python2.7/dist-packages
+-- 
+--   Python 3:
+--     Interpreter:                 /usr/bin/python3 (ver 3.4.3)
+--     Libraries:                   /usr/lib/x86_64-linux-gnu/libpython3.4m.so (ver 3.4.3)
+--     numpy:                       /usr/lib/python3/dist-packages/numpy/core/include (ver 1.8.2)
+--     packages path:               /usr/lib/python3/dist-packages
+-- 
+```
+* After the `make` see the output if you can find this comment at the end:
 ```shell
 	Linking CXX shared library ../../lib/cv2.so
 	[100%] Built target opencv_python2
 	Linking CXX shared library ../../lib/python3/cv2.cpython-34m.so
 	[100%] Built target opencv_python3
 ```
-and after `make install` you supposed to have these two libraries in your system:
+* After `make install` you supposed to have these two libraries in your system:
 ```shell
 	user@pc:~$ locate cv2.so
 	/usr/lib/python2.7/dist-packages/cv2.so
 	user@pc:~$ locate cv2.cpython-34m.so
 	/usr/lib/python3/dist-packages/cv2.cpython-34m.so
 ```
-If everything looks fine, then check if you can use `cv2` module from python:
+* If everything looks fine, then check if you can use `cv2` module from python:
 ```shell
 	user@pc:~$ python
 	Python 2.7.6 (default, Jun 22 2015, 17:58:13) 
