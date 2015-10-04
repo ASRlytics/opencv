@@ -112,9 +112,25 @@ now opencv will be installed in `/opt/opencv`
 	sudo ldconfig
 ```
 * set the `PKG_CONFIG_PATH` env. variable to `/opt/opencv/lib/pkgconfig`
+* also, you need to add `/opt/opencv/lib` to `LD_LIBRARY_PATH`
 * now you can get the list of compile flags to use them in your Makefile --
 ```shell
 	user@pc:~$ pkg-config --cflags --libs opencv
 	-I/opt/opencv/include/opencv -I/opt/opencv/include  -L/opt/opencv/lib -lopencv_shape -lopencv_stitching -lopencv_objdetect -lopencv_superres -lopencv_videostab -lopencv_calib3d -lopencv_features2d -lopencv_highgui -lopencv_videoio -lopencv_imgcodecs -lopencv_video -lopencv_photo -lopencv_ml -lopencv_imgproc -lopencv_flann -lopencv_core -lopencv_hal 	
 ```
 
+#### python (2.7.6 and 3.4.3) support:
+The python supports are already enabled in the above `cmake` command, after `make` see the output if you can find this comment at the end:
+```shell
+	Linking CXX shared library ../../lib/cv2.so
+	[100%] Built target opencv_python2
+	Linking CXX shared library ../../lib/python3/cv2.cpython-34m.so
+	[100%] Built target opencv_python3
+```
+and after `make install` you supposed to have these two libraries in your system:
+```shell
+	user@pc:~$ locate cv2.so
+	/usr/lib/python2.7/dist-packages/cv2.so
+	user@pc:~$ locate cv2.cpython-34m.so
+	/usr/lib/python3/dist-packages/cv2.cpython-34m.so
+```
