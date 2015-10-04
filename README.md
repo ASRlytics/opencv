@@ -132,3 +132,24 @@ and after `make install` you supposed to have these two libraries in your system
 	user@pc:~$ locate cv2.cpython-34m.so
 	/usr/lib/python3/dist-packages/cv2.cpython-34m.so
 ```
+If everything looks fine, then check if you can use `cv2` module from python:
+```shell
+	user@pc:~$ python
+	Python 2.7.6 (default, Jun 22 2015, 17:58:13) 
+	[GCC 4.8.2] on linux2
+	Type "help", "copyright", "credits" or "license" for more information.
+	>>> import cv2
+	>>> print (cv2.__version__)
+	3.0.0-dev
+	>>> 
+```
+and for python3:
+```shell
+	Python 3.4.3 (default, Jul 28 2015, 18:20:59) 
+	[GCC 4.8.4] on linux
+	Type "help", "copyright", "credits" or "license" for more information.
+	>>> import cv2
+	>>> print (cv2.__version__)
+	3.0.0-dev
+>>> 
+```
