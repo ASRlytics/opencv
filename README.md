@@ -34,7 +34,7 @@ I wanted to make this installation separate from the system (i.e. `/usr/local/..
 
 The main problems are the dependencies, here I have found a list of possible way to solve them:
 
-* first get rid of the craps: `sudo apt-get autoremove libopencv-dev python-opncv`
+* first get rid of the craps: `sudo apt-get autoremove libopencv-dev python-opencv`
 * build tools: `sudo apt-get install cmake build-essential` 
 * gtk: `sudo apt-get install libgtk2.0-dev libgtkglext1-dev`
 * gui: `sudo apt-get install libqt4-dev libpangox-1.0-dev libxmu-dev libxmu-headers`
@@ -120,7 +120,7 @@ now opencv will be installed in `/opt/opencv`
 ```
 
 #### python (2.7.6 and 3.4.3) support:
-* The python supports are already enabled in the above `cmake` command, so durin the `cmake` you supposed to see these outputs:
+* The python supports are already enabled in the above `cmake` command, so during the `cmake` you supposed to see these outputs:
 ```shell
 ...
 -- Found PythonInterp: /usr/bin/python (found suitable version "2.7.6", minimum required is "2.7") 
@@ -178,5 +178,5 @@ and for python3:
 	>>> import cv2
 	>>> print (cv2.__version__)
 	3.0.0-dev
->>> 
+	>>> 
 ```
