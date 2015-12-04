@@ -172,6 +172,7 @@ and also at the end:
 ```
 and for python3:
 ```shell
+	user@pc:~$ python3
 	Python 3.4.3 (default, Jul 28 2015, 18:20:59) 
 	[GCC 4.8.4] on linux
 	Type "help", "copyright", "credits" or "license" for more information.
