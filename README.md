@@ -23,7 +23,7 @@ Summary of guidelines:
 
 #### Some extra notes for installation on Ubuntu 14.04:
 
-I wanted to make this installation separate from the system (i.e. `/usr/local/..`), because I might need this to be installed on a remote cluster where I do have write access to `/usr/`. Therefore, I wanted to keep everything inside the opencv folder itself, all the stuffs will be kept like this --
+I wanted to make this installation separate from the system (i.e. `/usr/local/..`), because I might need this to be installed on a remote cluster where I do not have write access to `/usr/`. Therefore, I wanted to keep everything inside the opencv folder itself, all the stuffs will be kept like this --
 
 ```shell
 	/opnecv/extracted/path/build	(for the opencv build directory)
@@ -93,7 +93,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/opencv/ \
 If you want to cmake multiple times, you need to clear the `CMakeCache.txt` everytime.
 
 #### make:
-Make is very lengthy, so to do it in parallel --
+Make is very lengthy, so better to do it in parallel --
 ```shell
 	make -j7
 ```
@@ -179,3 +179,5 @@ and for python3:
 	3.0.0-dev
 	>>> 
 ```
+
+That's all folks !!
